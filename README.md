@@ -1,7 +1,7 @@
 # cau_hackathon2026
 
-## 📝주제: 의료 영상의 다각도 인지: 퓨샷 도메인 일반화 챌린지 (Multi-View Perception in Medical Imaging: Few-Shot Domain Generalization Challenge)
-## Hackathon Guide본 파일은 해커톤 참가를 위한 모델 추론(Inference) 및 제출 파일 생성 가이드입니다. 
+## 📝주제: 의료 영상의 다각도 인지: 퓨샷 도메인 일반화 챌린지 (Multi-View Perception in Medical Imaging: Few-Shot Domain Generalization Challenge) Hackathon Guide
+## 본 파일은 해커톤 참가를 위한 모델 추론(Inference) 및 제출 파일 생성 가이드입니다. 
 
 참가자는 제공된 inference.py를 수정하여 최종 모델 가중치와 함께 제출해야 합니다.
 
