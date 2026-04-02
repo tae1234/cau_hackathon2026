@@ -16,12 +16,12 @@ from torch.utils.data import DataLoader, Dataset
 class MyModel(nn.Module):
     def __init__(self, in_channels=1, num_classes=11):
         super(MyModel, self).__init__()
-        # 예시: 참가자가 작성할 공간
-        # self.network = ...
+        # 예시: 참가자가 학습에 사용한 네트워크 구조를 그대로 구현하세요.
+        # self.conv = nn.Conv2d(...)
         pass
 
     def forward(self, x):
-        # return self.network(x)
+        # return x
         pass
 
 
@@ -32,7 +32,6 @@ class MyModel(nn.Module):
 class TestDataset(Dataset):
     def __init__(self, img_dir, transform=None):
         self.img_dir = img_dir
-
         self.img_names = sorted([f for f in os.listdir(img_dir)
                                  if f.lower().endswith(('.png', '.jpg', '.jpeg'))])
         self.transform = transform
@@ -73,9 +72,9 @@ def main():
 
     # 2. 가중치 로드
     try:
-        # 참가자마다 저장 방식(state_dict 혹은 dict 전체)이 다를 수 있음을 유의
         checkpoint = torch.load(args.weight_path, map_location=device)
 
+        # 저장 방식에 따라 가중치 추출 (dict 형태 혹은 state_dict 형태 모두 대응)
         if isinstance(checkpoint, dict) and 'net' in checkpoint:
             model.load_state_dict(checkpoint['net'])
         else:
@@ -103,6 +102,13 @@ def main():
     loader = DataLoader(dataset, batch_size=args.batch_size, shuffle=False)
 
     results = []
+    # 클래스 이름 및 순서 정의 (변경 금지)
+    class_names = [
+        'bladder', 'femur-left', 'femur-right', 'heart',
+        'kidney-left', 'kidney-right', 'liver', 'lung-left',
+        'lung-right', 'pancreas', 'spleen'
+    ]
+
     print(f"Starting inference on {len(dataset)} images...")
 
     with torch.no_grad():
@@ -110,22 +116,24 @@ def main():
             images = images.to(device)
             outputs = model(images)
 
-            # AUC 계산을 위한 Softmax 확률값
-            probs = torch.softmax(outputs, dim=1)
-            # 최종 예측 클래스
             _, predicted = torch.max(outputs, 1)
 
             for i in range(len(filenames)):
-                res = {'filename': filenames[i], 'predicted_class': predicted[i].item()}
-                # 0번부터 10번 클래스까지의 확률 저장 (prob_0, prob_1, ...)
-                for c in range(probs.shape[1]):
-                    res[f'prob_{c}'] = probs[i, c].item()
+                img_id = os.path.splitext(filenames[i])[0]
+
+                res = {'index': img_id}
+
+                pred_idx = predicted[i].item()
+                for idx, name in enumerate(class_names):
+                    res[name] = 1 if idx == pred_idx else 0
+
                 results.append(res)
 
-    # 5. 결과 저장 (CSV 출력)
     df = pd.DataFrame(results)
+    cols = ['index'] + class_names
+    df = df[cols]
     df.to_csv(args.output_csv, index=False)
-    print(f"Done! Results saved to {args.output_csv}")
+    print(f"Inference complete! Results saved to {args.output_csv}")
 
 
 if __name__ == "__main__":
