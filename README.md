@@ -44,17 +44,20 @@ Pythontransforms.Compose([
 
 ---
 
-### 4. 제출 파일 형식 (submission.csv)inference.py 실행 시 생성되는 submission.csv는 반드시 아래의 컬럼 구조를 가져야 합니다. (AUC 평가를 위해 클래스별 확률값이 포함되어야 합니다.)
+### 4. 제출 파일 형식 (submission.csv)
+본 해커톤은 **Macro F1-Score**를 기준으로 채점하며, 결과 파일은 반드시 **원핫 인코딩(One-hot Encoding)** 형식을 준수해야 합니다.
 
-filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;predicted_class&nbsp;&nbsp;&nbsp;prob_0&nbsp;&nbsp;&nbsp;&nbsp;prob_1&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;prob_10
+Index&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bladder&nbsp;&nbsp;&nbsp;&nbsp;femur-left&nbsp;&nbsp;&nbsp;&nbsp;femur-right&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;spleen
 
-image_000.png&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.01&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;0.05
+image_00000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;0
 
-**filename**: 확장자를 포함한 이미지 파일명 (정렬 필수)
+image_00001&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;0
 
-**predicted_class**: 모델이 예측한 최종 클래스 인덱스 (0~10)
+**Index**: 확장자를 포함하지 않은 이미지 파일명
 
-**prob_n**: 해당 클래스일 확률 (Softmax 결과값, 0.0 ~ 1.0)
+**bladder~spleen**: 모델이 예측한 결과 (해당되는 클래스에만 '1', 나머지는 '0')
+
+**컬럼명 순서**: bladder, femur-left, femur-right, heart, kidney-left, kidney-right, liver, lung-left, lung-right, pancreas, spleen
 
 ---
 
