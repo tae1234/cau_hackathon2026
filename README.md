@@ -54,6 +54,7 @@ image_000.png&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 **prob_n**: 해당 클래스일 확률 (Softmax 결과값, 0.0 ~ 1.0)
 
+---
 
 ### 5. 실행 방법운영진은 아래 명령어를 통해 제출하신 코드를 검증합니다.
 
