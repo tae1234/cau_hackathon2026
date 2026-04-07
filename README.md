@@ -13,7 +13,9 @@
 
 ├── model.pth             # 학습 완료된 모델 가중치 파일 (pt 또는 pth)
 
-└── requirements.txt      # (선택) 추가 사용 라이브러리 목록
+├── requirements.txt      # (선택) 추가 사용 라이브러리 목록
+
+└── log.txt               # 부정행위 방지용 로그파일
 
 #### 추가적인 파일을 업로드하셔도 됩니다. import하시는걸 잊지 마세요.
 
@@ -73,13 +75,43 @@ image_00001&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
 
 ---
 
-### 6. 제출방식
+### 6. 모델 검증 및 부정행위 관련 규정
 
-준비된 inference.py 파일과 가중치파일, 부수적인 파일들을 **각 팀 대표의 이메일**로 보내진 구글드라이브 폴더에 업로드해주세요.
+필수 제출 의무: <span style="color:red">모든 참가자는 최종 모델 제출 시 배포된 train 폴더와 가중치 파일(.pth/.pt 등)의 고유 해시값(Hash) 및 학습 진행 로그(Log)를 함께 제출해야 합니다.
 
-매일 **아침 8시까지 업로드**된 파일을 확인 후 **오전 11:59까지 점수를 업데이트** 합니다. 
+재학습 검증(Retraining Verification): <span style="color:red">주최 측은 모델의 무결성 검증을 위해 참가자에게 전처리 및 학습 코드 전체를 요구할 수 있습니다.
 
-점수 업데이트 이후 파일은 구글드라이브에서 **삭제**합니다. 그러니 꼭 파일을 꼭 **백업** 해놓으시길 바랍니다.
+실격 규정: <span style="color:red">제출된 코드를 주최 측 환경에서 재학습했을 때 성능이 재현되지 않거나, 제출된 로그/해시값이 조작된 것으로 확인될 경우 사전 경고 없이 실격 처리됩니다.
+
+train 폴더와 가중치 파일의 고유 해시값 체크 방법
+
+파일경로 부분을 train폴더와 가중치파일 주소로 넣고 실행하면 hash값이 생성됩니다. 그 해시값을 log에 남겨주세요.
+
+```python
+import hashlib
+import os
+
+def get_official_hash(folder_path):
+    file_hashes = []
+    for root, dirs, files in os.walk(folder_path):
+        for file in sorted(files):
+            if file.startswith('.'): continue
+
+            file_path = os.path.join(root, file)
+
+            hasher = hashlib.md5()
+            with open(file_path, 'rb') as f:
+                for chunk in iter(lambda: f.read(4096), b""):
+                    hasher.update(chunk)
+            file_hashes.append(hasher.hexdigest().upper())
+
+    combined = "".join(file_hashes)
+    final_hash = hashlib.md5(combined.encode()).hexdigest().upper()
+    return final_hash
+
+print(get_official_hash('train 파일경로'))
+print(get_official_hash('가중치 파일경로'))
+```
 
 ---
 
