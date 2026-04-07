@@ -17,7 +17,7 @@ class MyModel(nn.Module):
     def __init__(self, in_channels=1, num_classes=11):
         super(MyModel, self).__init__()
         # 예시: 참가자가 학습에 사용한 네트워크 구조를 그대로 구현하세요.
-        # self.conv = nn.Conv2d(...)
+        # self.conv = nn....
         pass
 
     def forward(self, x):
@@ -42,7 +42,6 @@ class TestDataset(Dataset):
     def __getitem__(self, idx):
         img_name = self.img_names[idx]
         img_path = os.path.join(self.img_dir, img_name)
-        # MedMNIST 규격에 맞춘 GrayScale 로드
         image = Image.open(img_path).convert('L')
         if self.transform:
             image = self.transform(image)
