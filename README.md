@@ -109,7 +109,7 @@ def get_official_hash(folder_path):
     final_hash = hashlib.md5(combined.encode()).hexdigest().upper()
     return final_hash
 
-print(get_official_hash('train 파일경로'))
+print(get_official_hash('train 폴더경로'))
 print(get_official_hash('가중치 파일경로'))
 ```
 
