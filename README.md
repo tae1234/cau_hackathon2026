@@ -1,5 +1,9 @@
 # cau_hackathon2026
 
+# 본선은 예선보다 난이도가 급상승할 수 있습니다. 2인의 팀이 참가하는 것보다 4명이 팀을 꾸려 참가하시는것을 권장드립니다.
+
+# 예선에 참가하시는동안 팀원을 증원하셔도 괜찮으니 언제든지 mediai@cau.ac.kr 로 연락주시길 바랍니다
+
 ## 📝주제: 의료 영상의 다각도 인지: 퓨샷 도메인 일반화 챌린지 (Multi-View Perception in Medical Imaging: Few-Shot Domain Generalization Challenge) Hackathon Guide
 ## 본 파일은 해커톤 참가를 위한 모델 추론(Inference) 및 제출 파일 생성 가이드입니다. 
 
