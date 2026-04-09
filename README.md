@@ -4,6 +4,8 @@
 
 # 예선에 참가하시는동안 팀원을 증원하셔도 괜찮으니 언제든지 mediai@cau.ac.kr 로 연락주시길 바랍니다
 
+# 주말에는 리더보드를 업데이트하지 않습니다! 주말동안 올린 제출물들은 월요일에 업데이트 합니다
+
 ## 📝주제: 의료 영상의 다각도 인지: 퓨샷 도메인 일반화 챌린지 (Multi-View Perception in Medical Imaging: Few-Shot Domain Generalization Challenge) Hackathon Guide
 ## 본 파일은 해커톤 참가를 위한 모델 추론(Inference) 및 제출 파일 생성 가이드입니다. 
 
