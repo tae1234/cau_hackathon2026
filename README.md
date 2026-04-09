@@ -77,6 +77,16 @@ image_00001&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
 
 ### 6. 모델 검증 및 부정행위 관련 규정
 
+🚫 제한 조건 (Strict Constraints - Zero Tolerance) 
+
+#### 외부 데이터 사용 전면 금지: 참가자는 오직 주최측에서 제공한 공식 학습 데이터셋만을 사용해야 합니다.
+
+#### 사전 학습 가중치 사용 불가: ImageNet 등으로 사전 학습된 가중치(Pre-trained weights) 사용은 허용되지 않습니다. 반드시 무작위 초기화(Random Initialization) 상태에서 제공된 의료 영상 데이터만으로 학습해야 합니다.
+
+#### 허용되는 조건: Model Merge 기법, 데이터 증강같은 기법으로 추가학습은 가능합니다.
+
+#### 적발 시 조치: 대회 진행 및 코드 리뷰 과정에서 위반 사항 발견 시, 사전 경고 없이 즉각 탈락(Disqualification) 처리됩니다.
+
 필수 제출 의무: <span style="color:red">모든 참가자는 최종 모델 제출 시 배포된 train 폴더와 가중치 파일(.pth/.pt 등)의 고유 해시값(Hash) 및 학습 진행 로그(Log)를 함께 제출해야 합니다.
 
 재학습 검증(Retraining Verification): <span style="color:red">주최 측은 모델의 무결성 검증을 위해 참가자에게 전처리 및 학습 코드 전체를 요구할 수 있습니다.
